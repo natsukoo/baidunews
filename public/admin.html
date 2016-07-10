@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,intial-scale=1">
+    <title>百度新闻简易后台</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="css/admincss.css">
+</head>
+
+<body>
+    <!-- 导航条开始 -->
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">百度新闻系统后台</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a id="account" href="#"></a>
+                    </li>
+                    <li>
+                        <a id="logout" href="#">注销</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <!-- 导航条结束 -->
+    <!-- 内容开始 -->
+    <div class="container">
+        <!-- 左侧边栏开始,采用bootstrap列表组来做 -->
+        <div class="rox">
+            <div class="col-cs-12 col-sm-2 col-md-2 col-lg-2">
+                <div id="menu" class="list-group">
+                    <a id="news" href="#" class="list-group-item active">精选版面</a>
+                    <a id="news2" href="#" class="list-group-item">百家版面</a>
+                </div>
+            </div>
+            <!-- 左侧边栏结束 -->
+            <!-- 右侧主面板 -->
+            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>
+                            百度新闻系统后台
+                        </h4>
+                        <div class="form-group">
+                            <button id="addNews" class="btn btn-success">新增新闻</button><span id="addResult"></span>
+                            <ul class="pagination hidden-xs btn pull-right" style="margin-top:-8px;">
+                                <li>
+                                    <a href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li>
+                                    <a href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- 新增新闻的小滑窗 -->
+                        <div class="newsDetail">
+                            <form id="addNewsDetail" class="form-horizontal" action="baijia.php" method="post">
+                                <div class="form-group">
+                                    <label for="newsTitle">新闻标题</label>
+                                    <input type="text" class="form-control" id="newsTitle" name="newsTitle" placeholder="newsTitle">
+                                </div>
+                                <div class="form-group">
+                                    <label for="newsAuthor">作者</label>
+                                    <input type="text" class="form-control" name="newsAuthor" id="newsAuthor" placeholder="author">
+                                </div>
+                                <div class="form-group">
+                                    <label for="newsPic">图片链接</label>
+                                    <input type="text" class="form-control" id="newsPic" name="newsPic" placeholder="http://...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="newsDate">日期</label>
+                                    <input type="date" class="form-control" id="newsDate" name="newsDate">
+                                </div>
+                                <div class="form-group">
+                                    <label for="newsContent">新闻正文</label>
+                                    <textarea id="newsContent" name="newsContent" id="newsContent" class="form-control" rows="3"></textarea>
+                                </div>
+
+                                <button type="submit" id="addNewsDetailBtn" class="btn btn-primary">增加新闻</button>
+                                <button type="reset" class="btn btn-default">重置</button>
+                            </form>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-responsive col-lg-12 col-md-12 col-sm-12">
+                                <tr>
+                                    <th class="col-lg-2 col-md-2 col-sm-2">标题</th>
+                                    <th class="col-lg-2 col-md-2 col-sm-2">图片地址</th>
+                                    <th class="col-lg-2 col-md-2 col-sm-2">作者</th>
+                                    <th class="col-lg-2 col-md-2 col-sm-2">创建时间</th>
+                                    <th class="col-lg-1 col-md-1 col-sm-1">详情</th>
+                                    <th class="col-lg-1 col-md-1 col-sm-1">修改</th>
+                                    <th class="col-lg-1 col-md-1 col-sm-1">删除</th>
+                                </tr>
+                            </table>
+                            <table class="table table-responsive col-lg-12 col-md-12 col-sm-12" id="getData"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 右侧面板结束 -->
+        </div>
+    </div>
+    <!-- container结束 -->
+    <!-- 修改弹窗设置 -->
+    <div class="container-fluid shade">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">修改新闻</h3>
+                <span id="close">&times;</span>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="from-group col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                        <label for="uptitle" class="control-laber col-xs-4 col-sm-4 col-md-4 col-lg-4">新闻标题：<span>*</span></label>
+                        <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <input type="text" class="form-control" id="uptitle"></input>
+                        </div>
+                    </div>
+                    <div class="from-group col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                        <label for="uppic" class="control-laber col-xs-4 col-sm-4 col-md-4 col-lg-4">新闻图片：<span>*</span></label>
+                        <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <input type="text" class="form-control" id="uppic"></input>
+                        </div>
+                    </div>
+                    <div class="from-group col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                        <label for="update" class="control-laber col-xs-4 col-sm-4 col-md-4 col-lg-4">新闻日期：<span>*</span></label>
+                        <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <input type="date" class="form-control" id="update"></input>
+                        </div>
+                    </div>
+                    <div class="from-group col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                        <label for="upauthor" class="control-laber col-xs-4 col-sm-4 col-md-4 col-lg-4">新闻作者：<span>*</span></label>
+                        <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <input type="text" class="form-control" id="upauthor"></input>
+                        </div>
+                    </div>
+                    <div class="from-group col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                        <label for="upcontent" class="control-laber col-xs-4 col-sm-4 col-md-4 col-lg-4">新闻内容：<span>*</span></label>
+                        <textarea class="form-control" id="upcontent" rows="3"></textarea>
+                    </div>
+                    <br/>
+                    <div class="from-group col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                        <button id="updateBtn" class="btn btn-success btn-sm">保存修改</button>
+                        <button id="close2" class="btn btn-info btn-sm">取消</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- 内容结束 -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>

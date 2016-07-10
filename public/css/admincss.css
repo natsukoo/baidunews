@@ -1,0 +1,61 @@
+html,body{
+	position: relative;
+}
+.newsDetail{
+    width: 95%;
+    margin: auto 2%;
+}
+
+#addNewsDetail,
+#updateDetail {
+    display: none;
+}
+/*修改弹窗的样式*/
+.shade{
+	/*Viewport units: vw, vh, vmin, vmax,这些可以在css直接获取浏览器的高度*/
+	height: 100vh;
+	width: 100%;
+	/*本来用的是absolute，但是由于滚动条，当滚动到下面的时候，绝对定位就只覆盖在了页面上部分，所以需要用fixed相对于容器定位*/
+	position: fixed;
+	top: 0;
+	z-index: 10;
+	background: rgba(230,230,230,0.7);
+	display: none;
+}
+.shade .panel{
+	width: 500px;height: 400px;
+	position: absolute;top: 50%;left: 50%;
+	margin-left: -250px;margin-top: -200px;
+}
+.panel-heading{
+	position: relative;
+}
+
+.panel-heading span#close{
+	position: absolute;
+	right:10px;
+	top: 0px;
+	font-size: 20px;line-height:35px;
+	cursor: pointer;
+}
+.shade>.panel-body{
+	overflow: scroll;
+}
+form.form-horizontal div>label{
+line-height: 35px;
+}
+form.form-horizontal div>label span{
+color: red;
+}
+
+form.form-horizontal>div>textarea{
+	margin-top:0;
+ resize: none;
+}
+form.form-horizontal>div:last-child{
+	margin-top: 15px;
+}
+form.form-horizontal>div:last-child>button{
+	margin:0 15px;
+}
+/*弹出层样式结束*/
