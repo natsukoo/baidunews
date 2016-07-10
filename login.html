@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>登陆界面</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div></div>
+        <div class="center-block box-shadow">
+            <h1>sign in</h1>
+            <form class="form" method="post" action="index.html">
+                <div class="form-group has-feedback">
+                    <label class="sr-only" for="exampleInputEmail3">Email address</label>
+                    <span class="glyphicon glyphicon-envelope form-control-feedback" aria-hidden="true"></span>
+                    <span id="exampleInputPassword3" class="sr-only">(success)</span>
+                    <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+                </div>
+            
+
+                <div class="form-group has-feedback">
+                    <label class="sr-only" for="exampleInputPassword3">Password</label>
+
+                    <span class="glyphicon glyphicon-lock form-control-feedback" aria-hidden="true"></span>
+                    <span id="exampleInputPassword3" class="sr-only">(success)</span>
+                    <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> Remember me
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-info">Sign in</button>
+            </form>
+        </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>
