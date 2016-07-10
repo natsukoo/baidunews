@@ -1,0 +1,9 @@
+.newsDetail{
+    width: 95%;
+    margin: auto 2%;
+}
+
+#addNewsDetail,
+#updateDetail {
+    display: none;
+}

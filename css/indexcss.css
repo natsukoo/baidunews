@@ -1,0 +1,240 @@
+ html,
+ body,
+ div,
+ a,
+ ul,
+ li {
+     margin: 0;
+     padding: 0;
+     background: transparent;
+ }
+ 
+ html,
+ body,
+ .page {
+     width: 100%;
+     height: auto;
+     position: relative;
+ }
+ 
+ #container {
+     height: auto;
+     width: 99%;
+     margin: 0 auto;
+ }
+ /*内容层里面的每一个div属于一个新闻盒子*/
+ #container>div{
+    width:100%;
+    /*想设置宽带为百分比，高度根据宽度比例来激素哪*/
+    height: 80px;
+    position: relative;
+    border: 1px solid rgba(200,200,200,0.7);
+    cursor: pointer;
+
+ }
+ #container>div>img{
+    height:100%;
+    width: auto;
+    min-width: 130px;
+    max-width: 230px;
+    float: left;
+    border: 1px solid red;
+    margin-right: 20px;
+ }
+#container>div>p{
+    height: 60%;
+    font-size: 18px;
+    font-weight: 500;
+}
+#container>div>span{
+    position: 
+}
+ .wrap {
+     position: relative;
+     height: 100px;
+ }
+ 
+ .top {
+     position: absolute;
+     width: 100%;
+     min-width: 350px;
+     height: auto;
+     background-color: #3e98f0;
+     background-image: url(../img/bg-news-logo.png);
+     background-repeat: no-repeat;
+     background-position: center 10px;
+     background-size: 90px auto;
+     -webkit-background-size: 90px auto;
+     -moz-background-size: 90px auto;
+ }
+ 
+ .head {
+     width: 98%;
+     height: 44px;
+     margin: 5px auto;
+     border-bottom: 1px solid rgba(256, 253, 253, 0.3);
+ }
+ 
+ .head .left {
+     float: left;
+ }
+ 
+ .head .right {
+     float: right;
+ }
+ /*这个选择后代的a元素，然后就不分开左右来写样式*/
+ 
+ .head a {
+     display: inline-block;
+     width: 40px;
+     height: 44px;
+     background-image: url(../img/bg-new-toolbar.png);
+     background-repeat: no-repeat;
+     background-size: 40px auto;
+     -moz-background-size: 40px auto;
+     -webkit-background-size: 40px auto;
+ }
+ 
+ .head .left a:nth-child(1) {
+     background-size: 50px auto;
+     -moz-background-size: 50px auto;
+     -webkit-background-size: 50px auto;
+     background-position: -4px 0px;
+ }
+ 
+ .head .left a:nth-child(2) {
+     background-position: 0px -463px;
+ }
+ 
+ .head .right a:nth-child(1) {
+     background-position: 10px -106px;
+ }
+ 
+ .head .right a:nth-child(2) {
+     background-position: 7px -162px;
+ }
+ 
+ .menu {
+     width: 98%;
+     margin: 10px auto;
+ }
+ 
+ .menu ul {}
+ 
+ .menu ul li {
+     float: left;
+     width: 6%;
+     min-width: 60px;
+     color: #fff;
+     text-align: center;
+     list-style: none;
+     margin-bottom: 10px;
+ }
+ 
+ .menu ul li a,
+ .menu ul li a:link,
+ .menu ul li a:visited {
+     display: block;
+     width: 100%;
+     cursor: pointer;
+     border-right: 1px solid rgba(256, 253, 253, 0.3);
+     position: relative;
+     font-size: 15px;
+     line-height: 15px;
+     font-weight: 100;
+     color: rgba(256, 253, 253, 0.8);
+     text-decoration: none;
+ }
+ 
+ .menu ul li a.more {
+     border: none
+ }
+ 
+ .menu ul li .more:after {
+     position: absolute;
+     content: "";
+     left: 60px;
+     top: 6px;
+     z-index: 2;
+     display: inline-block;
+     font-size: 0;
+     width: 0;
+     height: 0;
+     line-height: 0;
+     border: 5px solid transparent;
+     border-top: 5px solid #fff;
+ }
+ 
+ .load {
+     width: 100%;
+     height: 35px;
+     margin: 5px auto;
+ }
+ 
+ .load button {
+     width: 20%;
+     min-width: 110px;
+     height: 100%;
+     display: block;
+     margin: auto;
+     border: 1px solid #999;
+     text-align: center;
+     font-size: 15px;
+     line-height: 100%;
+     background: rgba(200, 200, 200, 0.7);
+ }
+ 
+ .footer {
+     width: 100%;
+     height: 44px;
+     background: #3e98f0;
+ }
+ 
+ .footer ul {
+     width: 100%;
+     height: 100%;
+ }
+ 
+ .footer ul li {
+     display: inline-block;
+     width: 32%;
+     height: 100%;
+     text-align: center;
+     background: #3e98f0;
+     border-right: 1px solid rgba(256, 253, 253, 0.3);
+ }
+ 
+ .footer ul li:last-child {
+     border-right: none;
+ }
+ 
+ .footer ul li span {
+     display: inline-block;
+     width: 20px;
+     height: 20px;
+     background-image: url(../img/bg-new-toolbar.png);
+     background-repeat: no-repeat;
+     background-size: 40px auto;
+     -moz-background-size: 40px auto;
+     -webkit-background-size: 40px auto;
+     vertical-align: middle;
+     background-position: -11px -8px;
+     line-height: 44px;
+ }
+ 
+ .footer ul li a,
+ .footer ul li a:visited,
+ .footer ul li a:link {
+     vertical-align: middle;
+     line-height: 44px;
+     cursor: pointer;
+     font-size: 16px;
+     font-weight: 100;
+     color: rgba(256, 253, 253, 0.8);
+     text-decoration: none;
+ }
+ 
+ .active {
+     text-decoration: underline;
+     font-weight: 1.5;
+ }

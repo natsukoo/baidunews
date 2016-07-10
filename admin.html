@@ -5,16 +5,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,intial-scale=1">
-    <title>boostrap后台登录系统</title>
+    <title>百度新闻简易后台</title>
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-   
+    <link rel="stylesheet" type="text/css" href="css/admincss.css">
 </head>
 
 <body>
@@ -29,38 +29,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">管理系统</a>
+                <a class="navbar-brand" href="#">百度新闻系统后台</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">内容审核<span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">论坛管理</a></li>
-                    <li><a href="#">数据统计</a></li>
-                </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <!-- 加了这个的话，在768px的时候导航栏会变成两行，而且手动定义collapse并没有效果。。
-                    <form class="navbar-form navbar-left" role="search">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search">
-                                <a href="#" class="input-group-addon btn btn-default">
-                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </form> -->
                     <li>
-                        <a href="#">Inbox <span class="badge">42</span></a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">我删除的条目</a></li>
-                            <li><a href="#">我修改的条目</a></li>
-                            <li><a href="#">我恢复的条目</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">注销</a></li>
-                        </ul>
+                        <a href="#">Admin</a></li>
+                    <li>
+                        <a href="login.html">注销</a>
                     </li>
                 </ul>
             </div>
@@ -73,14 +50,9 @@
         <!-- 左侧边栏开始,采用bootstrap列表组来做 -->
         <div class="rox">
             <div class="col-cs-12 col-sm-2 col-md-2 col-lg-2">
-                <div class="list-group">
-                    <a href="#" class="list-group-item active">主贴审核</a>
-                    <a href="#" class="list-group-item">回复审核</a>
-                    <a href="#" class="list-group-item">用户管理</a>
-                    <a href="#" class="list-group-item">版主审核</a>
-                    <a href="#" class="list-group-item">主贴审核日志</a>
-                    <a href="#" class="list-group-item">回复审核日志</a>
-                    <a href="#" class="list-group-item">用户管理日志</a>
+                <div id="menu" class="list-group">
+                    <a id="news" href="#" class="list-group-item active">精选版面</a>
+                    <a id="news2" href="#" class="list-group-item">百家版面</a>
                 </div>
             </div>
             <!-- 左侧边栏结束 -->
@@ -89,14 +61,12 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4>
-                            主贴审核
+                            百度新闻系统后台
                         </h4>
                         <div class="form-group">
-                            <span>全选<input type="checkbox"/></span>
-                            <span></span>
-                            <button class="btn btn-success">通过</button>
-                            <button class="btn btn-primary">恢复</button>
-                            <button class="btn btn-danger">删除</button>
+                            <button id="addNews" class="btn btn-success">增加新闻</button>
+                            <button id="updateNews" class="btn btn-primary">修改新闻</button>
+                            <button id="deleteNews" class="btn btn-danger">删除新闻</button><span id="deleteResult" class="btn"></span>
                             <ul class="pagination hidden-xs btn pull-right" style="margin-top:-8px;">
                                 <li>
                                     <a href="#" aria-label="Previous">
@@ -114,212 +84,76 @@
                                     </a>
                                 </li>
                             </ul>
-                            </li>
-                            </ul>
                         </div>
-                    </div>
+                        <!-- 新增新闻的小滑窗 -->
+                        <div class="newsDetail">
+                            <form id="addNewsDetail" class="form-horizontal" action="baijia.php" method="post">
+                                <div class="form-group">
+                                    <label for="newsTitle">新闻标题</label>
+                                    <input type="text" class="form-control" id="newsTitle" name="newsTitle" placeholder="newsTitle">
+                                </div>
+                                <div class="form-group">
+                                    <label for="newsAuthor">作者</label>
+                                    <input type="text" class="form-control" name="newsAuthor" id="newsAuthor" placeholder="author">
+                                </div>
+                                <div class="form-group">
+                                    <label for="newsPic">图片链接</label>
+                                    <input type="text" class="form-control" id="newsPic" name="newsPic" placeholder="http://...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="newsDate">日期</label>
+                                    <input type="date" class="form-control" id="newsDate" name="newsDate">
+                                </div>
+                                <div class="form-group">
+                                    <label for="newsContent">新闻正文</label>
+                                    <textarea id="newsContent" name="newsContent" id="newsContent" class="form-control" rows="3"></textarea>
+                                </div>
+                                <button type="submit" id="addNewsDetailBtn" class="btn btn-primary">增加新闻</button>
+                                <button type="reset" class="btn btn-default">重置</button>
+                                <span id="addResult"></span>
+                            </form>
+                             <!-- 此处为需要修改的条目 -->
+                            <form id="updateDetail" class="form-horizontal">
+                               <div class="form-group">
+                                    <label for="newsTitle">新闻标题</label>
+                                    <input type="text" class="form-control" id="upnewsTitle" name="newsTitle">
+                                </div>
+                                <div class="form-group">
+                                    <label for="newsAuthor">作者</label>
+                                    <input type="text" class="form-control" name="upnewsAuthor" id="upnewsAuthor">
+                                </div>
+                                <div class="form-group">
+                                    <label for="newsPic">图片链接</label>
+                                    <input type="text" class="form-control" id="upnewsPic" name="newsPic">
+                                </div>
+                                <div class="form-group">
+                                    <label for="newsDate">日期</label>
+                                    <input type="date" class="form-control" id="upnewsDate" name="newsDate">
+                                </div>
+                                <div class="form-group">
+                                    <label for="newsContent">新闻正文</label>
+                                    <textarea name="newsContent" id="upnewsContent" class="form-control" rows="3">我看看这个是啥</textarea>
+                                </div>
+                                 <button type="submit" id="updateNewsDetailBtn" class="btn btn-warning">修改新闻</button>
+                                <button id="quit" class="btn btn-default">取消</button>
+                                <span id="updateResult"></span>
+                            </form>
+                        </div>
+
+                           
+                  
                     <div class="panel-body">
-                        <div class="table-responsive col-lg-12 col-md-12 col-sm-12">
-                            <table class="table">
-                                <tr>
-                                    <th></th>
-                                    <th>审核状态</th>
-                                    <th>标题</th>
-                                    <th>作者</th>
-                                    <th>创建时间</th>
-                                    <th>详情</th>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox">
-                                    </td>
-                                    <td>
-                                        <span class="label label-default">未审核</span>
-                                    </td>
-                                    <td><a href="#">怎么学习Bootstrap：[7]bootstrap列表组使用</a></td>
-                                    <td><a href="#">庇护祝福</a></td>
-                                    <td>2013年12月18日 10:52</td>
-                                    <td>
-                                        <a href="#collapse1" class="detail-link" data-toggle="collapse" data-parent="#accordion">
-                                            <span class="glyphicon glyphicon-chevron-down"></span>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr id="collapse1" class="collapse">
-                                    <td colspan="10">
-                                        bootstrap中的列表组, 是通过样式.list-group 来定义的. 然后列表组中的项是用样式: .list-group-item 在html中, 列表也是使用ul标签, 这里也是默认使用ul标签, 举例说明. 这个是一个默认的基本的例子. 使用的是ul>li的标签. 然后加上样式. 最后出现一个列表的内容. 可以修改li中的内容. 增加一个测试的页面.
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox">
-                                    </td>
-                                    <td>
-                                        <span class="label label-default">未审核</span>
-                                    </td>
-                                    <td><a href="#">怎么学习Bootstrap：[7]bootstrap列表组使用</a></td>
-                                    <td><a href="#">庇护祝福</a></td>
-                                    <td>2013年12月18日 10:52</td>
-                                    <td>
-                                        <a href="#collapse2" class="detail-link" data-toggle="collapse" data-parent="#accordion">
-                                            <span class="glyphicon glyphicon-chevron-down"></span>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr id="collapse2" class="collapse">
-                                    <td colspan="10">
-                                        bootstrap中的列表组, 是通过样式.list-group 来定义的. 然后列表组中的项是用样式: .list-group-item 在html中, 列表也是使用ul标签, 这里也是默认使用ul标签, 举例说明. 这个是一个默认的基本的例子. 使用的是ul>li的标签. 然后加上样式. 最后出现一个列表的内容. 可以修改li中的内容. 增加一个测试的页面.
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox">
-                                    </td>
-                                    <td>
-                                        <span class="label label-success">已通过</span>
-                                    </td>
-                                    <td><a href="#">怎么学习Bootstrap：[7]bootstrap列表组使用</a></td>
-                                    <td><a href="#">庇护祝福</a></td>
-                                    <td>2013年12月18日 10:52</td>
-                                    <td>
-                                        <a href="#collapse3" class="detail-link" data-toggle="collapse" data-parent="#accordion">
-                                            <span class="glyphicon glyphicon-chevron-down"></span>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr id="collapse3" class="collapse">
-                                    <td colspan="10">
-                                        bootstrap中的列表组, 是通过样式.list-group 来定义的. 然后列表组中的项是用样式: .list-group-item 在html中, 列表也是使用ul标签, 这里也是默认使用ul标签, 举例说明. 这个是一个默认的基本的例子. 使用的是ul>li的标签. 然后加上样式. 最后出现一个列表的内容. 可以修改li中的内容. 增加一个测试的页面.
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox">
-                                    </td>
-                                    <td>
-                                        <span class="label label-default">未审核</span>
-                                    </td>
-                                    <td><a href="#">怎么学习Bootstrap：[7]bootstrap列表组使用</a></td>
-                                    <td><a href="#">庇护祝福</a></td>
-                                    <td>2013年12月18日 10:52</td>
-                                    <td>
-                                        <a href="#collapse4" class="detail-link" data-toggle="collapse" data-parent="#accordion">
-                                            <span class="glyphicon glyphicon-chevron-down"></span>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr id="collapse4" class="collapse">
-                                    <td colspan="10">
-                                        bootstrap中的列表组, 是通过样式.list-group 来定义的. 然后列表组中的项是用样式: .list-group-item 在html中, 列表也是使用ul标签, 这里也是默认使用ul标签, 举例说明. 这个是一个默认的基本的例子. 使用的是ul>li的标签. 然后加上样式. 最后出现一个列表的内容. 可以修改li中的内容. 增加一个测试的页面.
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox">
-                                    </td>
-                                    <td>
-                                        <span class="label label-default">未审核</span>
-                                    </td>
-                                    <td><a href="#">怎么学习Bootstrap：[7]bootstrap列表组使用</a></td>
-                                    <td><a href="#">庇护祝福</a></td>
-                                    <td>2013年12月18日 10:52</td>
-                                    <td>
-                                        <a href="#collapse5" class="detail-link" data-toggle="collapse" data-parent="#accordion">
-                                            <span class="glyphicon glyphicon-chevron-down"></span>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr id="collapse5" class="collapse">
-                                    <td colspan="10">
-                                        bootstrap中的列表组, 是通过样式.list-group 来定义的. 然后列表组中的项是用样式: .list-group-item 在html中, 列表也是使用ul标签, 这里也是默认使用ul标签, 举例说明. 这个是一个默认的基本的例子. 使用的是ul>li的标签. 然后加上样式. 最后出现一个列表的内容. 可以修改li中的内容. 增加一个测试的页面.
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox">
-                                    </td>
-                                    <td>
-                                        <span class="label label-danger">已删除</span>
-                                    </td>
-                                    <td><a href="#">怎么学习Bootstrap：[7]bootstrap列表组使用</a></td>
-                                    <td><a href="#">庇护祝福</a></td>
-                                    <td>2013年12月18日 10:52</td>
-                                    <td>
-                                        <a href="#collapse6" class="detail-link" data-toggle="collapse" data-parent="#accordion">
-                                            <span class="glyphicon glyphicon-chevron-down"></span>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr id="collapse6" class="collapse">
-                                    <td colspan="10">
-                                        bootstrap中的列表组, 是通过样式.list-group 来定义的. 然后列表组中的项是用样式: .list-group-item 在html中, 列表也是使用ul标签, 这里也是默认使用ul标签, 举例说明. 这个是一个默认的基本的例子. 使用的是ul>li的标签. 然后加上样式. 最后出现一个列表的内容. 可以修改li中的内容. 增加一个测试的页面.
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox">
-                                    </td>
-                                    <td>
-                                        <span class="label label-info">已恢复</span>
-                                    </td>
-                                    <td><a href="#">怎么学习Bootstrap：[7]bootstrap列表组使用</a></td>
-                                    <td><a href="#">庇护祝福</a></td>
-                                    <td>2013年12月18日 10:52</td>
-                                    <td>
-                                        <a href="#collapse7" class="detail-link" data-toggle="collapse" data-parent="#accordion">
-                                            <span class="glyphicon glyphicon-chevron-down"></span>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr id="collapse7" class="collapse">
-                                    <td colspan="10">
-                                        bootstrap中的列表组, 是通过样式.list-group 来定义的. 然后列表组中的项是用样式: .list-group-item 在html中, 列表也是使用ul标签, 这里也是默认使用ul标签, 举例说明. 这个是一个默认的基本的例子. 使用的是ul>li的标签. 然后加上样式. 最后出现一个列表的内容. 可以修改li中的内容. 增加一个测试的页面.
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox">
-                                    </td>
-                                    <td>
-                                        <span class="label label-default">未审核</span>
-                                    </td>
-                                    <td><a href="#">怎么学习Bootstrap：[7]bootstrap列表组使用</a></td>
-                                    <td><a href="#">庇护祝福</a></td>
-                                    <td>2013年12月18日 10:52</td>
-                                    <td>
-                                        <a href="#collapse8" class="detail-link" data-toggle="collapse" data-parent="#accordion">
-                                            <span class="glyphicon glyphicon-chevron-down"></span>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr id="collapse8" class="collapse">
-                                    <td colspan="10">
-                                        bootstrap中的列表组, 是通过样式.list-group 来定义的. 然后列表组中的项是用样式: .list-group-item 在html中, 列表也是使用ul标签, 这里也是默认使用ul标签, 举例说明. 这个是一个默认的基本的例子. 使用的是ul>li的标签. 然后加上样式. 最后出现一个列表的内容. 可以修改li中的内容. 增加一个测试的页面.
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox">
-                                    </td>
-                                    <td>
-                                        <span class="label label-success">已通过</span>
-                                    </td>
-                                    <td><a href="#">怎么学习Bootstrap：[7]bootstrap列表组使用</a></td>
-                                    <td><a href="#">庇护祝福</a></td>
-                                    <td>2013年12月18日 10:52</td>
-                                    <td>
-                                        <a href="#collapse9" class="detail-link" data-toggle="collapse" data-parent="#accordion">
-                                            <span class="glyphicon glyphicon-chevron-down"></span>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr id="collapse9" class="collapse">
-                                    <td colspan="10">
-                                        bootstrap中的列表组, 是通过样式.list-group 来定义的. 然后列表组中的项是用样式: .list-group-item 在html中, 列表也是使用ul标签, 这里也是默认使用ul标签, 举例说明. 这个是一个默认的基本的例子. 使用的是ul>li的标签. 然后加上样式. 最后出现一个列表的内容. 可以修改li中的内容. 增加一个测试的页面.
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
+                        <table class="table table-responsive col-lg-12 col-md-12 col-sm-12">
+                            <tr>
+                                <th></th>
+                                <th class="col-lg-4 col-md-4 col-sm-4">标题</th>
+                                <th class="col-lg-3 col-md-3 col-sm-3">图片地址</th>
+                                <th class="col-lg-2 col-md-2 col-sm-2">作者</th>
+                                <th class="col-lg-2 col-md-2 col-sm-2">创建时间</th>
+                                <th class="col-lg-1 col-md-1 col-sm-1">详情</th>
+                            </tr>
+                        </table>
+                        <table class="table table-responsive col-lg-12 col-md-12 col-sm-12" id="getData"></table>
                     </div>
                 </div>
             </div>
@@ -330,6 +164,7 @@
     <script src="js/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/admin.js"></script>
 </body>
 
 </html>
